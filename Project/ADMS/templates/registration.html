@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html ng-app="app" lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link rel="icon" href="{{ url_for('static', filename='assets/images/AD_favicon.png')}}" type="image/png">
+		<title>AD智能诊断系统</title>
+		<link href="{{ url_for('static', filename='assets/css/icons.css')}}" rel="stylesheet">
+		<link href="{{ url_for('static', filename='assets/css/bootstrap.min.css')}}" rel="stylesheet">
+		<link href="{{ url_for('static', filename='assets/css/style.css')}}" rel="stylesheet">
+		<link href="{{ url_for('static', filename='assets/css/responsive.css')}}" rel="stylesheet">
+	</head>
+
+
+<body >
+		<!--Start login Section-->
+		<section class="login-section">
+			<div class="container">
+				<div class="row">
+					<div class="login-wrapper">
+						<div class="login-inner">
+
+							<!--Logo标签-->
+							<div class="logo">
+								<img src="../static/assets/images/AD.png" alt="logo" />
+							</div>
+
+							<!--注册标签-->
+							<h1 class="header-title text-center">普通用户注册</h1>
+
+							<!--<div class="box-main">-->
+
+							<!--<div id="register" class="register">-->
+
+							<!--form表单提交-->
+							<form id="form" onsubmit="return check()" method="post" action="/register">
+								<div id="form_submit" class="form_submit">
+
+									<div class="fieldset">
+										<!--输入用户ID-->
+										<div class="field-group">
+											<span class="control-group" id="UserID_input">
+													<div class="input_add_long_background">
+														<p id="p1" style="color:red; display: block;" >{{ msg }}</p>
+														<input class="form-control" type="txt" id="UserID" name="UserID" maxLength="20" value="" onblur="VerifyUserID(this.value);" placeholder="用户ID" required="required"/>
+														<br />
+													</div>
+											</span>
+										</div>
+										<!--输入密码-->
+										<div class="field-group">
+											<span class="control-group" id="Password_input1">
+													<div class="input_add_long_background">
+														<p id="p2_1" style="color:red;display: none;"></p>
+														<input class="form-control" type="password" id="PWD1" name="PWD1" maxLength="20" value="" onblur="VerifyPwd_1(this.value);" placeholder="密码" required="required"/>
+														<br />	
+													</div>
+											</span>
+										</div>
+										<!--输入确认密码-->
+										<div class="field-group">
+											<span class="control-group" id="Password_input2">
+													<div class="input_add_long_background">
+														<p id="p2_2" style="color:red;display: none;"></p>
+														<input class="form-control" type="password" id="PWD2" name="PWD2" maxLength="20" value="" onblur="VerifyPwd_2(this.value);" placeholder="确认密码" required="required"/>
+														<br />	
+													</div>
+											</span>
+										</div>
+
+										<!--输入姓名-->
+										<div class="field-group">
+											<span class="control-group" id="Name_input">
+													<div class="input_add_long_background">
+														<p id="p3" style="color:red;display: none;"></p>
+														<input class="form-control" type="text" id="UserName" name="UserName" maxLength="50" value="" onblur="VerifyUserName(this.value);" placeholder="姓名" required="required">
+														<br />
+													</div>
+											</span>
+										</div>
+
+										<!--输入性别-->
+										<div class="field-group">
+											<span class="control-group" id="Sex_input">
+													<div class="input_add_long_background">
+														<p id="p4" style="color:red;display: none;"></p>
+														<select class="form-control" type="text" id="Sex" name="Sex" maxLength="50" value="" onblur="VerifySex(this.value);" placeholder="性别" required="required" >
+															<option value="请选择">性别</option>
+															<option value="男">男</option>
+															<option value="女">女</option>
+														</select>
+														<br />
+													</div>
+											</span>
+										</div>
+
+										<!--输入出生日期-->
+										<!--<div class="field-group">
+											<span class="control-group" id="Age_input">
+													<div class="input_add_long_background">
+														<p id="p5" style="color:red;display: none;"></p>
+														<input class="form-control" type="text" id="Age" name="Age" maxLength="50" value="" onblur="VerifyAge();" placeholder="出生日期" required="required">
+														<br />
+													</div>
+											</span>
+										</div>-->
+										
+										
+										<div class="field-group">
+											<span class="control-group" id="Age_input">
+													<div class="input_add_long_background">
+														<p id="p5" style="color:red;display: none;"></p>
+														<input class="form-control" type="text" id="Birth" class="Birth" name="Birth" onblur="Check_BirthTime(this.id);" placeholder="出生日期" required="required">
+														<input class="form-control" type="text" id="dateBox" placeholder="禁选某些时间" style="display: none;">
+														<input class="form-control" type="text" id="dateBox2" style="display: none;">
+														<input class="form-control" type="text" id="dateBox3" placeholder="小时：分选择" style="display: none;">
+														<br />
+													</div>
+											</span>
+										</div>
+										
+
+										<!--输入联系电话-->
+										<div class="field-group">
+											<span class="control-group" id="Phone_input">
+													<div class="input_add_long_background">
+														<p id="p6" style="color:red;display: none;"></p>
+														<input class="form-control" type="text" id="Phone" name="Phone" maxLength="50" value="" onblur="VerifyPhone(this.value);" placeholder="联系电话" required="required">		
+														<br />
+													</div>
+											</span>
+										</div>
+
+									</div>
+									<!--class="fieldset"-->
+
+									<!--提交部分-->
+									<span class="form-group" id="CheckBox_input">
+										<div class="pull-left">
+											<p id="p7" style="color:red;display: none;"></p>
+											<div class="checkbox primary">
+												<!--接受条款部分-->
+												<input type="checkbox" id="Accept" name="Accept" required="required" />
+												<label for="verify">我接受<a href="#">条款和条件</a></label>
+											</div>
+										</div>
+										
+										
+										<!--注册按钮-->
+										<div class="form-group">
+											<input type="submit" id="submit" name="submit" value="注册" class="btn btn-primary btn-block"  />
+										</div>
+										<!--已有账号，登录部分-->
+										<div id="div_submit" class="div_submit">
+											<div class="form-group text-center">
+												已经有账户？
+												<a href="/">登录</a>
+											</div>
+										</div>
+									</span>
+
+								</div>
+							</form>
+							<!--form表单提交结束-->
+
+							<div class="copy-text">
+								<p class="m-0">2019 &copy; HuaCode</p>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+	<!--Begin core plugin -->
+    <script type='text/javascript' src="{{ url_for('static', filename='assets/js/jquery.js')}}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='laydate/laydate.js')}}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='assets/js/jquery.js')}}"></script>
+    <!-- End core plugin -->
+
+</body>
+	<script type="text/javascript" src="{{ url_for('static', filename='assets/js/Verify.js')}}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='DateBox/required.js')}}" ></script>
+
+</html>
+
+<script type="text/javascript">
+	requirejs(['../../static/DateBox/DateBox'],function(DateBox){
+	new DateBox('dateBox',{type:'M'});
+	
+	new DateBox('dateBox2',{type:'y-d'});
+	
+	new DateBox('dateBox3',{type:'h-m'});
+
+	new DateBox('Birth');
+
+});
+</script>
+

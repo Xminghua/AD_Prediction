@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>	
+<link rel="icon" href="{{url_for('static', filename='assets/images/AD_favicon.png')}}" type="image/png">
+<title>AD智能诊断系统</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="../../static/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../static/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="../../static/css/fullcalendar.css" />
+<link rel="stylesheet" href="../../static/css/matrix-style.css" />
+<link rel="stylesheet" href="../../static/css/matrix-media.css" />
+<link rel="stylesheet" href="../../static/font-awesome/css/font-awesome.css"  />
+<link rel="stylesheet" href="../../static/css/jquery.gritter.css" />
+<link rel='stylesheet' href='../../static/css/font.css' />
+<!-- <link rel="stylesheet" type="text/css" href="practice_system/bootstrap-3.3.7/css/bootstrap.min.css"> -->
+</head>
+<body >
+
+<!--Header-part-->
+
+<div id="header">
+  <h3 style="margin:15px auto auto 10px;">AD智能诊断系统</h3>
+  <!-- <h1><a href="#">实习管理系统</a></h1> -->
+</div>
+<!--close-Helabeler-part--> 
+
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+
+  <ul class="nav">
+    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">用户配置</span><b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><a href="/ExpertInfo"><i class="icon-user"></i> 个人信息</a></li>
+        <li class="divider"></li>
+        <li><a href="/ExpertLogout"><i class="icon-key"></i> 登出</a></li>
+      </ul>
+    </li>
+    <!-- <li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">消息</span> <span class="label label-important">5</span> <b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><a class="sAdd" title="" href="#"><i class="icon-plus"></i> 新消息</a></li>
+        <li class="divider"></li>
+        <li><a class="sOutbox" title="" href="#"><i class="icon-arrow-up"></i> outbox</a></li>
+        <li class="divider"></li>
+        <li><a class="sTrash" title="" href="#"><i class="icon-trash"></i> trash</a></li>
+      </ul>
+    </li> -->
+    <li class=""><a title="" href="/ExpertSetting"><i class="icon icon-cog"></i> <span class="text">设置</span></a></li>
+    <li class=""><a title="" href="/ExpertLogout"><i class="icon icon-share-alt"></i> <span class="text">登出</span></a></li>
+    <li class=""><a title="" href="/ExpertIndex"><i class="icon icon-user"></i> <span class="text">专家：</span><span id="userid"></span></a></li>
+  </ul>
+</div>
+
+<!--左边侧边栏-->
+<div id="sidebar"><a href="/ExpertIndex" class="visible-phone"><i class="icon icon-home"></i> 预诊断申请列表</a>
+  <ul>
+    <li class="active"><a href="/ExpertIndex"><i class="icon icon-home"></i> <span> 主页 </span></a> </li>
+    <li class="submenu"> <a href="/ExpertDApply"><i class="icon icon-time"></i> <span>预诊断申请列表</span>
+    	<ul>
+		  <li><a href="/ExpertDApply">预诊断申请列表</a></li>
+		  <li><a href="/ExpertGetMRI">上传诊断结果</a></li>
+	</ul>
+    <!-- </a> --> 
+    </li>
+    <li> <a href="/ExpertJApply"><i class="icon icon-th-list"></i> <span>入职申请</span></a>
+    <li class="submenu"> <a href="/ExpertInfo"><i class="icon icon-user"></i> <span>个人管理</span>
+      <ul>
+        <li><a href="/ExpertInfo">个人信息</a></li>
+        <li><a href="/ExpertAchievement">个人成就</a></li>
+      </ul>
+    </li>
+    <li><a href="/ExpertContact"><i class="icon icon-phone"></i> <span>联系我们</span></a></li>
+  </ul>
+</div>
+<!--sidebar-menu-->
+
+
+
+
+
+
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> <a href="/ExpertIndex" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 主页</a></div>
+  </div>
+  
+  <div class="container-fluid">
+    <!--在这里面写主要内容-->
+    <div class="row-fluid">
+	<div class="span12">
+		<div class="widget-box">
+			<div class="widget-title"> 
+				<span class="icon"> 
+					<i class="icon-briefcase">
+						
+					</i> 
+				</span>
+				<h5 >非法用户</h5>
+			</div>
+			<div class="widget-content">
+				<div class="row-fluid">
+					<div class="span6">
+						<a href="/">
+							<h3>请先登录！</h3>
+						</a>
+					</div>
+				</div>
+			</div>
+		
+		</div>
+	</div>
+</div>
+           
+
+  </div>
+   
+
+
+</div>
+
+
+
+<!--底部说明-->
+		<div class="row-fluid">
+			<div id="footer" class="span12">
+				2019 &copy; HuaCode
+			</div>
+		</div>
+
+
+<script type="text/javascript" src="../../static/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../static/js/common.js"></script>
+<script type="text/javascript" src="../../static/js/StudentIndex.js"></script>
+<script type="text/javascript" src="../../static/js/excanvas.min.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.min.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.ui.custom.js"></script> 
+<script type="text/javascript" src="../../static/js/bootstrap.min.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.flot.min.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.flot.resize.min.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.peity.min.js"></script> 
+<script type="text/javascript" src="../../static/js/fullcalendar.min.js"></script> 
+<script type="text/javascript" src="../../static/js/matrix.js"></script> 
+<script type="text/javascript" src="../../static/js/matrix.dashboard.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.gritter.min.js"></script> 
+<script type="text/javascript" src="../../static/js/matrix.interface.js"></script> 
+<script type="text/javascript" src="../../static/js/matrix.chat.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.validate.js"></script> 
+<script type="text/javascript" src="../../static/js/matrix.form_validation.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.wizard.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.uniform.js"></script> 
+<script type="text/javascript" src="../../static/js/select2.min.js"></script> 
+<script type="text/javascript" src="../../static/js/matrix.popover.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="../../static/js/matrix.tables.js"></script> 
+<!-- <script type="text/javascript" src="practice_system/jquery-3.3.1.min.js"></script> -->
+<!-- <script type="text/javascript" src="practice_system/bootstrap-3.3.7/js/bootstrap.min.js"></script> -->
+<script type="text/javascript">
+  // This function is called from the pop-up menus to transfer to
+  // a different page. Ignore if the value returned is a null string:
+  function goPage (newURL) {
+
+      // if url is empty, skip the menu dividers and reset the menu selection to default
+      if (newURL != "") {
+      
+          // if url is "-", it is this page -- reset the menu:
+          if (newURL == "-" ) {
+              resetMenu();            
+          } 
+          // else, send page to designated URL            
+          else {  
+            document.location.href = newURL;
+          }
+      }
+  }
+
+// resets the menu selection upon entry to this page:
+function resetMenu() {
+   document.gomenu.selector.selectedIndex = 2;
+}
+</script>
+</body>
+</html>

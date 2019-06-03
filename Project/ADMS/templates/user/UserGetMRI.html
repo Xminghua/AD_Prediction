@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>	
+<link rel="icon" href="{{url_for('static', filename='assets/images/AD_favicon.png')}}" type="image/png">
+<title>AD智能诊断系统</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!--<meta http-equiv="refresh" content="20">-->
+
+<link rel="stylesheet" href="../../static/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../static/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="../../static/bootstrap-fileinput/css/fileinput.min.css">
+
+<link rel="stylesheet" href="../../static/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="../../static/css/fullcalendar.css" />
+<link rel="stylesheet" href="../../static/css/matrix-style.css" />
+<link rel="stylesheet" href="../../static/css/matrix-media.css" />
+<link rel="stylesheet" href="../../static/font-awesome/css/font-awesome.css"  />
+<link rel="stylesheet" href="../../static/css/jquery.gritter.css" />
+<link rel='stylesheet' href='../../static/css/font.css' />
+
+
+
+
+
+<!-- <link rel="stylesheet" type="text/css" href="practice_system/bootstrap-3.3.7/css/bootstrap.min.css"> -->
+</head>
+<body >
+
+<!--Header-part-->
+
+<div id="header">
+  <h3 style="margin:15px auto auto 10px;">AD智能诊断系统</h3>
+  <!-- <h1><a href="#">实习管理系统</a></h1> -->
+</div>
+<!--close-Helabeler-part--> 
+
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse" style="background: #2C3B48;">
+
+  <ul class="nav">
+    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">用户配置</span><b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><a href="/UserInfo"><i class="icon-user"></i> 个人信息</a></li>
+        <li class="divider"></li>
+        <li><a href="/UserLogout"><i class="icon-key"></i> 登出</a></li>
+      </ul>
+    </li>
+    <!-- <li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">消息</span> <span class="label label-important">5</span> <b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><a class="sAdd" title="" href="#"><i class="icon-plus"></i> 新消息</a></li>
+        <li class="divider"></li>
+        <li><a class="sOutbox" title="" href="#"><i class="icon-arrow-up"></i> outbox</a></li>
+        <li class="divider"></li>
+        <li><a class="sTrash" title="" href="#"><i class="icon-trash"></i> trash</a></li>
+      </ul>
+    </li> -->
+    <li class=""><a title="" href="/UserSetting"><i class="icon icon-cog"></i> <span class="text">设置</span></a></li>
+    <li class=""><a title="" href="/UserLogout"><i class="icon icon-share-alt"></i> <span class="text">登出</span></a></li>
+    <li class=""><a title="" href="/UserIndex"><i class="icon icon-user"></i> <span class="text">普通用户：</span><span id="userid">{{ username }}</span></a></li>
+  </ul>
+</div>
+
+<!--左边侧边栏-->
+<div id="sidebar"><a href="/UserIndex" class="visible-phone"><i class="icon icon-home"></i> 诊断申请</a>
+  <ul>
+    <li><a href="/UserIndex"><i class="icon icon-home"></i> <span> 主页 </span></a> </li>
+    <li class="submenu active"> <a href="/UserDApply"><i class="icon icon-time"></i> <span>诊断申请</span>
+    	<ul>
+		  <li><a href="/UserDApply">诊断申请</a></li>
+		  <li><a href="/UserGetMRI">上传MRI影像</a></li>
+	</ul>
+    <!-- </a> --> 
+    </li>
+    <li class="submenu"> <a href="/UserResu"><i class="icon icon-th-list"></i> <span>诊断结果反馈</span>
+      <ul>
+        <li><a href="/UserResu">诊断结果反馈</a></li>
+        <li><a href="/UserHistoryInfo">历史信息对比</a></li>
+      </ul>
+    </li>
+    <li><a href="/UserInfo"><i class="icon icon-user"></i> <span>个人信息</span></a></li>
+    <li><a href="/UserContact"><i class="icon icon-phone"></i> <span>联系我们</span></a></li>
+  </ul>
+</div>
+<!--sidebar-menu-->
+
+
+
+
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> <a href="/UserIndex" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 主页</a></div>
+  </div>
+  
+  
+  
+  <div class="container-fluid">						
+					<div class="widget-box">
+						<div class="widget-title">
+							<span class="icon"> <i class="icon-info-sign"></i>
+							</span>
+							<h5>上传MRI影像</h5>
+						</div>
+						<!-- 个人详细信息 -->
+						<div class="widget-content nopadding" id="message">
+							<form class="form-horizontal" method="post" action="/UserUploadMRI" id="basic_validate" name="basic_validate">
+								<div class="control-group">
+									<label class="control-label">读取MRI影像</label>
+									<div class="controls" style="width: 220px;">
+										<div class="panel-body">
+											<input id="file_upload" type="file" class="file" data-preview-file-type="image" multiple>
+										</div>
+									</div>
+								</div>
+								
+								<div class="control-group">
+									<label class="control-label">MRI影像名称</label>
+									<div class="controls">
+										<input type="text" id="MRI_Name" class="MRI_Name" name="MRI_Name" placeholder="MRI影像名称" required="required" readonly />
+										<span style="color: red;">(MRI影像名称不能超过100个字符，请尽量精简MRI影像名称，便于后台处理，谢谢合作！)</span>
+									</div>
+								</div>
+								
+								<div class="control-group">
+									<label class="control-label">上传时间</label>
+									<div class="controls">
+										<input type="text" id="upload_time" class="upload_time" name="upload_time" placeholder="上传时间" required="required" readonly />
+									</div>
+								</div>
+								
+								
+								<div class="control-group">
+									<label class="control-label">MRI拍摄时间</label>
+									<div class="controls">
+										<p id="time1"></p>
+										<input type="text" id="dateBox4" class="Shoot_time" name="Shoot_time" onblur="check_time(this.id);" placeholder="MRI拍摄时间" required="required">
+										<input type="text" id="dateBox" placeholder="禁选某些时间" style="display: none;">
+										<input type="text" id="dateBox2" style="display: none;">
+										<input type="text" id="dateBox3" placeholder="小时：分选择" style="display: none;">
+									</div>
+								</div>
+																
+								<div class="form-actions" style="text-align: center;">
+									<p id="msg" name="msg" style="color: red;">{{ msg }}</p>
+									<input id="submit" type="submit" onclick="check_all();" value="上传"
+										class="btn btn-large btn-success">
+								</div>
+							</form>
+						</div>											
+					</div>			
+		</div>
+		
+		
+		<div class="container-fluid">
+    <!--在这里面写主要内容-->
+ <div class="widget-box">
+          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+            <h5 id="leave_sid">MRI影像列表</h5>
+          </div>
+          <div class="widget-content nopadding">
+            <table class="table table-bordered data-table">
+              <thead>
+                <tr>
+                  <th>MRI影像ID</th>
+                  <th>普通用户ID</th>
+                  <th>MRI影像名称</th>
+                  <th>上传时间</th>
+                  <th>MRI拍摄时间</th>
+                </tr>
+              </thead>
+              <tbody id="apply_content">
+               {% for i in mri %}
+               <tr>
+               	<td>{{ i[0] }}</td>
+               	<td>{{ i[1] }}</td>
+               	<td>{{ i[2] }}</td>
+               	<td>{{ i[3] }}</td>
+               	<td>{{ i[4] }}</td>
+               </tr>
+               {% endfor %}
+              </tbody>
+            </table>
+          </div>
+</div>
+
+        <div class="dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi ui-buttonset-multi paging_full_numbers" id="DataTables_Table_0_paginate"><a tabindex="0" class="first ui-corner-tl ui-corner-bl fg-button ui-button ui-state-default " id="DataTables_Table_0_first">首页</a><a tabindex="0" class="previous fg-button ui-button ui-state-default " id="DataTables_Table_0_previous">上一页</a><span id="page"></span><a tabindex="0" class="next fg-button ui-button ui-state-default" id="DataTables_Table_0_next">下一页</a><a tabindex="0" class="last ui-corner-tr ui-corner-br fg-button ui-button ui-state-default" id="DataTables_Table_0_last">末页</a></div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--底部说明-->
+		<div class="row-fluid">
+			<div id="footer" class="span12">
+				2019 &copy; HuaCode
+			</div>
+		</div>
+
+
+<script type="text/javascript" src="../../static/js/excanvas.min.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.ui.custom.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.flot.min.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.flot.resize.min.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.peity.min.js"></script> 
+<script type="text/javascript" src="../../static/js/fullcalendar.min.js"></script> 
+<script type="text/javascript" src="../../static/js/matrix.js"></script> 
+<script type="text/javascript" src="../../static/js/matrix.dashboard.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.gritter.min.js"></script> 
+<script type="text/javascript" src="../../static/js/matrix.interface.js"></script> 
+<script type="text/javascript" src="../../static/js/matrix.chat.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.validate.js"></script> 
+<script type="text/javascript" src="../../static/js/matrix.form_validation.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.wizard.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.uniform.js"></script> 
+<script type="text/javascript" src="../../static/js/select2.min.js"></script> 
+<script type="text/javascript" src="../../static/js/matrix.popover.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="../../static/js/matrix.tables.js"></script> 
+
+<script type="text/javascript" src="../../static/js/user/UserDApply.js"></script>
+
+<script src="../../static/js/jquery.js"></script>
+<script src="../../static/js/bootstrap.min.js"></script>
+<script src="../../static/bootstrap-fileinput/js/fileinput.min.js"></script>
+<script src="../../static/bootstrap-fileinput/js/locales/zh.js"></script>
+
+<script type="text/javascript" src="../../static/DateBox/required.js" ></script>
+
+</body>
+
+<script type="text/javascript">
+	requirejs(['../../static/DateBox/DateBox'],function(DateBox){
+	new DateBox('dateBox',{type:'M'});
+	
+	new DateBox('dateBox2',{type:'y-d'});
+	
+	new DateBox('dateBox3',{type:'h-m'});
+
+	new DateBox('dateBox4');
+
+});
+initFileInput("file_upload");
+ 
+function initFileInput(ctrlName) {
+    var control = $('#' + ctrlName);
+    control.fileinput({
+        language: 'zh', //设置语言
+        uploadUrl: "/UserUpload", //上传的地址
+        allowedFileExtensions: ['jpg', 'gif', 'png','nii'],//接收的文件后缀
+        //uploadExtraData:{"id": 1, "fileName":'123.mp3'},
+        uploadAsync: true, //默认异步上传
+        showUpload: true, //是否显示上传按钮
+        showRemove : true, //显示移除按钮
+        showPreview : false,//是否显示预览
+        showCaption: false,//是否显示标题
+        browseClass: "btn btn-primary", //按钮样式
+        // dropZoneEnabled: true,//是否显示拖拽区域
+        //minImageWidth: 50, //图片的最小宽度
+        //minImageHeight: 50,//图片的最小高度
+        //maxImageWidth: 1000,//图片的最大宽度
+        //maxImageHeight: 1000,//图片的最大高度
+        //maxFileSize: 0,//单位为kb，如果为0表示不限制文件大小
+        //minFileCount: 0,
+        // maxFileCount: 10, //表示允许同时上传的最大文件个数
+        enctype: 'multipart/form-data',
+        validateInitialCount:true,
+        previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+        msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
+ 
+        }).on('filepreupload', function(event, data, previewId, index) {     //上传中
+        var form = data.form, files = data.files, extra = data.extra,
+        response = data.response, reader = data.reader;
+        console.log('文件正在上传');
+    }).on("fileuploaded", function (event, data, previewId, index) {    //一个文件上传成功
+        console.log('文件上传成功！');
+        // console.log(data)
+        // data=JSON.parse(data)
+        filename = data.response['filename'];
+//      msg = data.response['msg']
+        $("#MRI_Name").attr("value",filename);
+//      user_name = {{ username }};
+//      alert(user_name);
+//      $("#user_id").html(user_name);
+ 
+        }).on('fileerror', function(event, data, msg) {  //一个文件上传失败
+        console.log('文件上传失败！');
+        })
+}
+</script>
+
+</html>

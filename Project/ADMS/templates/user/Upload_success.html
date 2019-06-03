@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!--<link rel="icon" href="{{url_for('static', filename='assets/images/AD_favicon.png')}}" type="image/png">
+  <title>阿兹海默症早期诊断辅助系统</title>
+   <link rel="stylesheet" href="{{url_for('static', filename='assets/css/icons.css')}}" >
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/bootstrap.min.css')}}" >
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/style.css')}}" >
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/responsive.css')}}" >-->
+    	
+   <link rel="icon" href="{{url_for('static', filename='assets/images/AD_favicon.png')}}" type="image/png">
+  <title>阿兹海默症早期诊断辅助系统</title>
+   <link rel="stylesheet" href="../../static/assets/css/icons/css/icons.css" >
+    <link rel="stylesheet" href="../../static/assets/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="../../static/assets/css/style.css" >
+    <link rel="stylesheet" href="../../static/assets/css/responsive.css" >
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+
+    <![endif]-->
+
+</head>
+
+<body class="sticky-header" >
+
+ <!--Start login Section-->
+  <section class="login-section">
+       <div class="container">
+           <div class="row">
+               <div class="login-wrapper">
+                   <div class="login-inner">
+
+                       <div class="logo">
+                         <img src="{{url_for('static', filename='assets/images/AD.png')}}" alt="logo"/>
+<!--                           <h1 >-->
+<!--                               <small>阿兹海默症早期诊断辅助系统</small>-->
+<!--                           </h1>-->
+                       </div>
+
+                   		<h2 class="header-title text-center">{{ msg }}</h2>
+												<!--{{url_for('login')}}-->
+                       
+
+											
+                         
+                      <form action="" class="a-link" method="post">
+                           <div class="form-group text-center" id="Register">
+                              	<a type="submit" href="/">返回登录页面</a>
+                           </div>
+                     	</form>
+                     	
+                      <div class="copy-text">
+                         <p class="m-0">2019 &copy; HuaCode</p>
+                      </div>
+
+                   </div>
+               </div>
+
+           </div>
+       </div>
+  </section>
+ <!--End login Section-->
+
+    <!--Begin core plugin -->
+    <script src="{{url_for('static', filename='assets/js/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/login.js')}}"></script>
+    <!-- End core plugin -->
+<script type="text/javascript">
+//$.ajax({
+//		url:'/login',
+//		type:'POST',
+//		data:{
+//			user:$('#username').val(),
+//			password:$('#password').val(),
+//		},
+//		success:function(data, response, status){
+//			if(data > 0){
+//				location.href = '/index';
+//			}else{
+//				$('#p1').css('display','block');
+////				$.messager.alert('登录失败!', '用户名或密码错误！', 'warning',function(){
+////					$('#password').select();
+////				});
+//			}
+//		}
+//})
+
+</script>
+</body>
+
+</html>
+

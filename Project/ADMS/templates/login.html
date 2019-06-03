@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="{{url_for('static', filename='assets/images/AD_favicon.png')}}" type="image/png">
+  <title>AD智能诊断系统</title>
+   <link rel="stylesheet" href="{{url_for('static', filename='assets/css/icons.css')}}" >
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/bootstrap.min.css')}}" >
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/style.css')}}" >
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/responsive.css')}}" >
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+
+    <![endif]-->
+
+</head>
+
+<body class="sticky-header" >
+
+ <!--Start login Section-->
+  <section class="login-section">
+       <div class="container">
+           <div class="row">
+               <div class="login-wrapper">
+                   <div class="login-inner">
+
+                       <div class="logo">
+                         <img src="{{url_for('static', filename='assets/images/AD.png')}}" alt="logo"/>
+<!--                           <h1 >-->
+<!--                               <small>阿兹海默症早期诊断辅助系统</small>-->
+<!--                           </h1>-->
+                       </div>
+
+                   		<h2 class="header-title text-center">登录</h2>
+												<!--{{url_for('login')}}-->
+                       <form role="form" id="loginForm" action="/login" method="post">
+                            <!-- 登录输入用户ID-->
+                           <div class="form-group">
+                               <input type="text" id="username"  name="username" class="form-control"  placeholder="用户ID" value="1111111" required="required">
+                           </div>
+                            <!--登录输入用户密码-->
+                           <div class="form-group">
+                               <input type="password" id="password" name="password" class="form-control"  placeholder="密码" value="123456a" required="required" >
+                           </div>
+
+                           <div class="form-group" id="radion_input">
+															<input type="radio" name="radioname" id="radioname1" value="普通用户" checked="checked">普通用户&nbsp;&nbsp;
+															<input type="radio" name="radioname" id="radioname2" value="专家用户" >专家用户&nbsp;&nbsp;
+															<input type="radio" name="radioname" id="radioname3" value="管理员">管理员
+						    					</div>
+
+                           <!-- 提交登录请求-->
+                            <div class="form-group">
+                            	<p id="p1" style="color:red;text-align:center; display: block;">{{ msg }}</p>
+                              <input type="submit" id="login" value="登录" class="btn btn-primary btn-block" onclick="check_login();" >
+                           </div>
+                       </form>
+
+											<div class="form-group">
+                           <div class="pull-left">
+                            <div class="checkbox primary">
+                              <input  id="checkbox-2" type="checkbox">
+                              <label for="checkbox-2">记住我</label>
+                            </div>
+                           </div>
+
+                           <div class="pull-right">
+                           	   <form action="" class="a-link" method="post">
+                                   <button type="button" class="fa fa-unlock-alt"> 忘记密码?</button>
+                               </form>
+                           </div>
+                      </div>
+                         
+                      <form action="" class="a-link" method="post">
+                           <div class="form-group text-center" id="Register">
+                              	 还没有账号吗?  <a type="submit" href="/register">注册</a>
+                           </div>
+                     	</form>
+                     	
+                      <div class="copy-text">
+                         <p class="m-0">2019 &copy; HuaCode</p>
+                      </div>
+
+                   </div>
+               </div>
+
+           </div>
+       </div>
+  </section>
+ <!--End login Section-->
+
+    <!--Begin core plugin -->
+    <script src="{{url_for('static', filename='assets/js/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/login.js')}}"></script>
+    <!-- End core plugin -->
+
+
+</body>
+</html>
+

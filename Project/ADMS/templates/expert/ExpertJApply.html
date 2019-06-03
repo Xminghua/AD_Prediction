@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>	
+<link rel="icon" href="{{url_for('static', filename='assets/images/AD_favicon.png')}}" type="image/png">
+<title>AD智能诊断系统</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="../../static/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../static/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="../../static/css/fullcalendar.css" />
+<link rel="stylesheet" href="../../static/css/matrix-style.css" />
+<link rel="stylesheet" href="../../static/css/matrix-media.css" />
+<link rel="stylesheet" href="../../static/font-awesome/css/font-awesome.css"  />
+<link rel="stylesheet" href="../../static/css/jquery.gritter.css" />
+<link rel='stylesheet' href='../../static/css/font.css' />
+<!-- <link rel="stylesheet" type="text/css" href="practice_system/bootstrap-3.3.7/css/bootstrap.min.css"> -->
+</head>
+<body >
+
+<!--Header-part-->
+
+<div id="header">
+  <h3 style="margin:15px auto auto 10px;">AD智能诊断系统</h3>
+  <!-- <h1><a href="#">实习管理系统</a></h1> -->
+</div>
+<!--close-Helabeler-part--> 
+
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+
+  <ul class="nav">
+    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">用户配置</span><b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><a href="/ExpertInfo"><i class="icon-user"></i> 个人信息</a></li>
+        <li class="divider"></li>
+        <li><a href="/ExpertLogout"><i class="icon-key"></i> 登出</a></li>
+      </ul>
+    </li>
+    <!-- <li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">消息</span> <span class="label label-important">5</span> <b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><a class="sAdd" title="" href="#"><i class="icon-plus"></i> 新消息</a></li>
+        <li class="divider"></li>
+        <li><a class="sOutbox" title="" href="#"><i class="icon-arrow-up"></i> outbox</a></li>
+        <li class="divider"></li>
+        <li><a class="sTrash" title="" href="#"><i class="icon-trash"></i> trash</a></li>
+      </ul>
+    </li> -->
+    <li class=""><a title="" href="/ExpertSetting"><i class="icon icon-cog"></i> <span class="text">设置</span></a></li>
+    <li class=""><a title="" href="/ExpertLogout"><i class="icon icon-share-alt"></i> <span class="text">登出</span></a></li>
+    <li class=""><a title="" href="/ExpertIndex"><i class="icon icon-user"></i> <span class="text">专家：</span><span id="userid">{{ username }}</span></a></li>
+  </ul>
+</div>
+
+<!--左边侧边栏-->
+<div id="sidebar"><a href="/ExpertIndex" class="visible-phone"><i class="icon icon-home"></i> 预诊断申请列表</a>
+  <ul>
+    <li><a href="/ExpertIndex"><i class="icon icon-home"></i> <span> 主页 </span></a> </li>
+    <li class="submenu"> <a href="/ExpertDApply"><i class="icon icon-time"></i> <span>预诊断申请列表</span>
+    	<ul>
+		  <li><a href="/ExpertDApply">预诊断申请列表</a></li>
+		  <li><a href="/ExpertGetMRI">上传诊断结果</a></li>
+	</ul>
+    <!-- </a> --> 
+    </li>
+    <li class="active"><a href="/ExpertJApply"><i class="icon icon-th-list"></i> <span>入职申请</span></a>
+    <li class="submenu"> <a href="/ExpertInfo"><i class="icon icon-user"></i> <span>个人管理</span>
+      <ul>
+        <li><a href="/ExpertInfo">个人信息</a></li>
+        <li><a href="/ExpertAchievement">个人成就</a></li>
+      </ul>
+    </li>
+    <li><a href="/ExpertContact"><i class="icon icon-phone"></i> <span>联系我们</span></a></li>
+  </ul>
+</div>
+<!--sidebar-menu-->
+
+
+
+
+
+
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> <a href="/ExpertIndex" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 主页</a></div>
+  </div>
+  
+  <div class="container-fluid">						
+					<div class="widget-box">
+						<div class="widget-title">
+							<span class="icon"> <i class="icon-info-sign"></i>
+							</span>
+							<h5>入职申请<span style="color: red;">（请按要求填写，否则会申请不通过！）</span></h5>
+						</div>
+						<!-- 个人详细信息 -->
+						<div class="widget-content nopadding" id="message">
+							<form class="form-horizontal" method="post" action="/ExpertJApplyPush" id="basic_validate" name="basic_validate">
+								<!--<div class="control-group">
+									<label class="control-label">MRI影像名称</label>
+									<div class="controls" >
+										 <select onchange="GetReason()" id="reason_1">
+										 <option value="科创竞赛" id="re_1">科创竞赛</option>
+										 <option value="暑期夏令营" id="re_2">暑期夏令营</option>
+										 <option value="托福雅思考试" id="re_3">托福雅思考试</option>
+										 <option value="生病" id="re_4">生病</option>
+										 <option value="其他" id="other">其他</option>
+										 </select>		 
+									</div>
+									
+									<label class="control-label"></label>
+									<div class="controls" id="reason_2" style="display:none;">
+										 	<textarea rows="5" cols="30" id="re_5" maxlength="150" placeholder="请详细认真描述请假原因……" required></textarea>
+									</div> 
+								</div>-->
+								<div class="control-group">
+									<label class="control-label">申请时间</label>
+									<div class="controls">
+										<input type="text" id="japply_time" class="japply_time" name="japply_time" placeholder="申请时间" readonly />
+									</div>
+								</div>
+								
+								
+								<div class="control-group">
+									<label class="control-label">申请身份</label>
+									<div class="controls">
+										<select id="japply_identity" name="japply_identity" class="japply_identity" onblur="check_identity(this.value);" required="required">
+											 <!--<option value="请选择专家身份">请选择专家身份</option>-->
+											 <option value="一级专家" id="iden_1">一级专家</option>
+											 <option value="二级专家" id="iden_2">二级专家</option>
+											 <option value="三级专家" id="iden_3">三级专家</option>
+										</select>	
+									</div>
+								</div>
+								
+								<div class="control-group">
+									<label class="control-label">申请年薪</label>
+									<div class="controls">
+										<select id="japply_salary" class="japply_salary" name="japply_salary" placeholder="申请年薪" onblur="check_salary(this.value);" required="required">
+											 <!--<option value="请选择年薪">请选择年薪</option>-->
+											 <option value="1-2万" id="salary_1">1-2万</option>
+											 <option value="3-5万" id="salary_2">3-5万</option>
+											 <option value="5-10万" id="salary_3">5-10万</option>
+											 <option value="10-15万" id="salary_4">10-15万</option>
+										</select>	
+										<span style="color: red;">（二级专家申请年薪不能超过10万，三级专家申请年薪不能超过5万）</span>
+									</div>
+								</div>
+								
+								
+								<div class="control-group">
+									<label class="control-label">个人履历</label>
+									<div class="controls" id="reason_2" >
+										 	<textarea rows="5" cols="30" id="resume" name="resume" class="resume	" maxlength="150" placeholder="请详细认真填写个人履历(字数不能少于50字)……" required="required"></textarea>
+									</div> 
+								</div>
+								
+								<div class="form-actions" style="text-align: center;">
+									<p id="msg" name="msg" style="color: red;">{{ msg }}</p>
+									<input id="submit" type="submit" value="提交申请" class="btn btn-large btn-success">
+								</div>
+							</form>
+						</div>											
+					</div>			
+		</div>
+		
+		
+		<div class="container-fluid">
+    <!--在这里面写主要内容-->
+ <div class="widget-box">
+          <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
+            <h5 id="leave_sid">入职申请列表<span style="color: red;">{{ msg_ja }}</span></h5>
+          </div>
+          <div class="widget-content nopadding">
+            <table class="table table-bordered data-table">
+              <thead>
+                <tr>
+                  <th>入职申请ID</th>
+                  <th>专家ID</th>
+                  <th>申请时间</th>
+                  <th>申请身份</th>
+                  <th>申请年薪</th>
+                  <th>个人履历</th>
+                  <th>申请状态</th>
+                </tr>
+              </thead>
+              <tbody id="apply_content">
+                {% for i in japply %}
+               <tr>
+               	<td>{{ i[0] }}</td>
+               	<td>{{ i[1] }}</td>
+               	<td>{{ i[2] }}</td>
+               	<td>{{ i[3] }}</td>
+               	<td>{{ i[4] }}</td>
+               	<td>{{ i[7] }}</td>
+               	<td style="color: red;">{{ i[6] }}</td>
+               </tr>
+               {% endfor %}
+              </tbody>
+            </table>
+          </div>
+</div>
+
+        <div class="dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi ui-buttonset-multi paging_full_numbers" id="DataTables_Table_0_paginate"><a tabindex="0" class="first ui-corner-tl ui-corner-bl fg-button ui-button ui-state-default " id="DataTables_Table_0_first">首页</a><a tabindex="0" class="previous fg-button ui-button ui-state-default " id="DataTables_Table_0_previous">上一页</a><span id="page"></span><a tabindex="0" class="next fg-button ui-button ui-state-default" id="DataTables_Table_0_next">下一页</a><a tabindex="0" class="last ui-corner-tr ui-corner-br fg-button ui-button ui-state-default" id="DataTables_Table_0_last">末页</a></div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--底部说明-->
+		<div class="row-fluid">
+			<div id="footer" class="span12">
+				2019 &copy; HuaCode
+			</div>
+		</div>
+
+
+<script type="text/javascript" src="../../static/js/excanvas.min.js"></script> 
+<script type="text/javascript" type="text/javascript" src="../../static/js/jquery.min.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.ui.custom.js"></script> 
+<script type="text/javascript" src="../../static/js/bootstrap.min.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.flot.min.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.flot.resize.min.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.peity.min.js"></script> 
+<script type="text/javascript" src="../../static/js/fullcalendar.min.js"></script> 
+<script type="text/javascript" src="../../static/js/matrix.js"></script> 
+<script type="text/javascript" src="../../static/js/matrix.dashboard.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.gritter.min.js"></script> 
+<script type="text/javascript" src="../../static/js/matrix.interface.js"></script> 
+<script type="text/javascript" src="../../static/js/matrix.chat.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.validate.js"></script> 
+<script type="text/javascript" src="../../static/js/matrix.form_validation.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.wizard.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.uniform.js"></script> 
+<script type="text/javascript" src="../../static/js/select2.min.js"></script> 
+<script type="text/javascript" src="../../static/js/matrix.popover.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="../../static/js/matrix.tables.js"></script> 
+<script type="text/javascript" src="../../static/js/export/ExportJApply.js"></script>
+
+
+</body>
+</html>

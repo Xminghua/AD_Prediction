@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>	
+<link rel="icon" href="{{url_for('static', filename='assets/images/AD_favicon.png')}}" type="image/png">
+<title>AD智能诊断系统</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="../../static/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../static/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="../../static/css/fullcalendar.css" />
+<link rel="stylesheet" href="../../static/css/matrix-style.css" />
+<link rel="stylesheet" href="../../static/css/matrix-media.css" />
+<link rel="stylesheet" href="../../static/font-awesome/css/font-awesome.css"  />
+<link rel="stylesheet" href="../../static/css/jquery.gritter.css" />
+<link rel='stylesheet' href='../../static/css/font.css' />
+<!-- <link rel="stylesheet" type="text/css" href="practice_system/bootstrap-3.3.7/css/bootstrap.min.css"> -->
+</head>
+<body >
+
+<!--Header-part-->
+
+<div id="header">
+  <h3 style="margin:15px auto auto 10px;">AD智能诊断系统</h3>
+  <!-- <h1><a href="#">实习管理系统</a></h1> -->
+</div>
+<!--close-Helabeler-part--> 
+
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+
+  <ul class="nav">
+    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">用户配置</span><b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><a href="/UserInfo"><i class="icon-user"></i> 个人信息</a></li>
+        <li class="divider"></li>
+        <li><a href="/UserLogout"><i class="icon-key"></i> 登出</a></li>
+      </ul>
+    </li>
+    <!-- <li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">消息</span> <span class="label label-important">5</span> <b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><a class="sAdd" title="" href="#"><i class="icon-plus"></i> 新消息</a></li>
+        <li class="divider"></li>
+        <li><a class="sOutbox" title="" href="#"><i class="icon-arrow-up"></i> outbox</a></li>
+        <li class="divider"></li>
+        <li><a class="sTrash" title="" href="#"><i class="icon-trash"></i> trash</a></li>
+      </ul>
+    </li> -->
+    <li class=""><a title="" href="/UserSetting"><i class="icon icon-cog"></i> <span class="text">设置</span></a></li>
+    <li class=""><a title="" href="/UserLogout"><i class="icon icon-share-alt"></i> <span class="text">登出</span></a></li>
+    <li class=""><a title="" href="/UserIndex"><i class="icon icon-user"></i> <span class="text">普通用户：</span><span id="userid">{{ username }}</span></a></li>
+  </ul>
+</div>
+
+<!--左边侧边栏-->
+<div id="sidebar"><a href="/UserIndex" class="visible-phone"><i class="icon icon-home"></i> 诊断申请</a>
+  <ul>
+    <li><a href="/UserIndex"><i class="icon icon-home"></i> <span> 主页 </span></a> </li>
+    <li class="submenu"> <a href="/UserDApply"><i class="icon icon-time"></i> <span>诊断申请</span>
+    	<ul>
+		  <li><a href="/UserDApply">诊断申请</a></li>
+		  <li><a href="/UserGetMRI">上传MRI影像</a></li>
+	</ul>
+    <!-- </a> --> 
+    </li>
+    <li class="submenu active"> <a href="/UserResu"><i class="icon icon-th-list"></i> <span>诊断结果反馈</span>
+      <ul>
+        <li><a href="/UserResu">诊断结果反馈</a></li>
+        <li><a href="/UserHistoryInfo">历史信息对比</a></li>
+      </ul>
+    </li>
+    <li><a href="/UserInfo"><i class="icon icon-user"></i> <span>个人信息</span></a></li>
+    <li><a href="/UserContact"><i class="icon icon-phone"></i> <span>联系我们</span></a></li>
+  </ul>
+</div>
+<!--sidebar-menu-->
+
+
+
+
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> <a href="/UserIndex" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 主页</a></div>
+  </div>
+  <div class="container-fluid">
+    <!--在这里面写主要内容-->
+    <div class="row-fluid">
+      <div class="span12">
+    <div class="widget-box">
+      <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+        <h5>历史信息对比<span style="color: red;">(该用户的海马体体积变化情况如下)</span></h5>
+      </div>
+      <!--该div用来显示诊断得到的海马体历史信息-->
+      <div id="main" style="width: 900px;height:500px;"></div>
+      
+      </div>
+</div>
+</DIV>
+  </div>
+  <div style="text-align: center;">
+      <!--<button  class="btn btn-large btn-primary" id="submit_log">提交日志</button>-->
+  </div>
+  </div>
+   
+
+
+</div>
+
+
+
+<!--底部说明-->
+		<div class="row-fluid">
+			<div id="footer" class="span12">
+				2019 &copy; HuaCode
+			</div>
+		</div>
+
+<script type="text/javascript" src="../../static/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../static/js/jquery.min.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.ui.custom.js"></script> 
+<script type="text/javascript" src="../../static/js/bootstrap.min.js"></script> 
+<script type="text/javascript" src="../../static/js/bootstrap-colorpicker.js"></script> 
+<script type="text/javascript" src="../../static/js/bootstrap-datepicker.js"></script> 
+<script type="text/javascript" src="../../static/js/masked.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.uniform.js"></script> 
+<script type="text/javascript" src="../../static/js/select2.min.js"></script> 
+
+<script type="text/javascript" src="../../static/js/wysihtml5-0.3.0.js"></script> 
+<script type="text/javascript" src="../../static/js/jquery.peity.min.js"></script> 
+<script type="text/javascript" src="../../static/js/bootstrap-wysihtml5.js"></script> 
+<!-- <script type="text/javascript" src="practice_system/bootstrap-3.3.7/js/bootstrap.min.js"></script> -->
+<script type="text/javascript">$('.textarea_editor').wysihtml5();</script>
+
+<!--调用echarts插件来显示历史信息-->
+<script type="text/javascript" src="http://echarts.baidu.com/dist/echarts.js"></script>
+	    <!-- 引入jquery.js -->
+<script type="text/javascript" src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+
+
+
+<script>
+	
+				var a = echarts;
+        var myChart = a.init(document.getElementById('main'));
+         // 显示标题，图例和空的坐标轴
+         myChart.setOption({
+             title: {
+                 text: '该用户海马体历史信息对比（X：海马体诊断日期/Y：海马体数量）'
+             },
+             tooltip : {
+            trigger: 'axis'
+	        },
+	        legend: {
+	            data:['今日数据']
+	        },
+	        toolbox: {
+	            show : true,
+	            feature : {
+	                mark : {show: true},
+	                dataView : {show: true, readOnly: false},
+	                magicType : {show: true, type: ['line', 'bar']},
+	                // restore : {show: true},
+	                // saveAsImage : {show: true}
+	            }
+	        },
+	        calculable : true,
+ 
+             xAxis : [
+	            {
+	                type : 'category',
+	                boundaryGap : false,
+	                data : []
+	            }
+	        ],
+             yAxis : [
+	            {
+	                type : 'value',
+	                axisLabel : {
+	                    formatter: '{value}'
+	                }
+	            }
+	        ],
+             series : [
+	            {
+	                name:'最多数量',
+	                type:'line',
+	                data:[],
+	                markPoint : {
+	                    data : [
+	                        {type : 'max', name: '最大值'},
+	                        {type : 'min', name: '最小值'}
+	                    ]
+	                },
+	                markLine : {
+	                    data : [
+	                        {type : 'average', name: '平均值'}
+	                    ]
+	                }
+	            },]
+         });
+         myChart.showLoading();    //数据加载完之前先显示一段简单的loading动画
+         var names=[];    //名称数组（实际用来盛放X轴坐标值）
+         var nums=[];    //数量数组（实际用来盛放Y坐标值）
+         $.ajax({
+         type : "get",
+//       async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+         url : "/Echarts",    //请求发送到Servlet处
+//       data : {},
+         dataType : "json",        //返回数据形式为json
+         success : function(result) {
+             //请求成功时执行该函数内容，result即为服务器返回的json对象
+             if (result) {
+//           	alert(result["data"]);
+                    for(var i=0;i<result["data"].length;i++){
+//                  	alert(result["data"][i]["name"]);
+                       names.push(result["data"][i]["name"]);    //挨个取出名称并填入类别数组
+                     }
+                    for(var i=0;i<result["data"].length;i++){
+//                  	alert(result["data"][i]["num"]);
+                        nums.push(result["data"][i]["num"]);    //挨个取出数量并填入销量数组
+                      }
+                    myChart.hideLoading();    //隐藏加载动画
+                    myChart.setOption({        //加载数据图表
+                        xAxis: {
+                            data: names
+                        },
+                        series: [{
+                            // 根据名字对应到相应的系列
+                            name: '海马体历史数量为',
+                            data: nums
+                        }]
+                    });
+ 
+             }
+ 
+        },
+         error : function(errorMsg) {
+             //请求失败时执行该函数
+         alert("历史信息获取失败!");
+         myChart.hideLoading();
+         }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>	
+<link rel="icon" href="{{url_for('static', filename='assets/images/AD_favicon.png')}}" type="image/png">
+<title>AD智能诊断系统</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="../../static/css/bootstrap.min.css" />
+<link rel="stylesheet" href="../../static/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="../../static/css/fullcalendar.css" />
+<link rel="stylesheet" href="../../static/css/fullcalendar.css" />
+<link rel="stylesheet" href="../../static/css/matrix-style.css" />
+<link rel="stylesheet" href="../../static/css/matrix-media.css" />
+<link rel="stylesheet" href="../../static/css/uniform.css" />
+<link rel="stylesheet" href="../../static/css/bootstrap-wysihtml5.css" />
+<link rel="stylesheet" href="../../static/font-awesome/css/font-awesome.css"  />
+<link rel="stylesheet" href="../../static/css/jquery.gritter.css" />
+<link rel='stylesheet' href='../../static/css/font.css' />
+
+
+</head>
+<body >
+
+<!--Header-part-->
+
+<div id="header">
+  <h3 style="margin:15px auto auto 10px;">AD智能诊断系统</h3>
+  <!-- <h1><a href="#">实习管理系统</a></h1> -->
+</div>
+<!--close-Helabeler-part--> 
+
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+
+  <ul class="nav">
+    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">用户配置</span><b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><a href="/AdminInfo"><i class="icon-user"></i> 个人信息</a></li>
+        <li class="divider"></li>
+        <li><a href="/AdminLogout"><i class="icon-key"></i> 登出</a></li>
+      </ul>
+    </li>
+    <!-- <li class="dropdown" id="menu-messages"><a href="#" data-toggle="dropdown" data-target="#menu-messages" class="dropdown-toggle"><i class="icon icon-envelope"></i> <span class="text">消息</span> <span class="label label-important">5</span> <b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><a class="sAdd" title="" href="#"><i class="icon-plus"></i> 新消息</a></li>
+        <li class="divider"></li>
+        <li><a class="sOutbox" title="" href="#"><i class="icon-arrow-up"></i> outbox</a></li>
+        <li class="divider"></li>
+        <li><a class="sTrash" title="" href="#"><i class="icon-trash"></i> trash</a></li>
+      </ul>
+    </li> -->
+    <li class=""><a title="" href="/AdminSetting"><i class="icon icon-cog"></i> <span class="text">设置</span></a></li>
+    <li class=""><a title="" href="/AdminLogout"><i class="icon icon-share-alt"></i> <span class="text">登出</span></a></li>
+    <li class=""><a title="" href="/AdminIndex"><i class="icon icon-user"></i> <span class="text">管理员：</span><span id="userid">{{ username }}</span></a></li>
+  </ul>
+</div>
+
+<!--左边侧边栏-->
+<div id="sidebar"><a href="/AdminIndex" class="visible-phone"><i class="icon icon-home"></i> 申请列表</a>
+  <ul>
+    <li><a href="/AdminIndex"><i class="icon icon-home"></i> <span> 主页 </span></a> </li>
+    <li class="submenu active"> <a href="/AdminDApply"><i class="icon icon-time"></i> <span>申请列表</span>
+    	<ul>
+		  <li><a href="/AdminDApply">诊断申请列表</a></li>
+		  <li><a href="/AdminJApply">入职申请列表</a></li>
+	</ul>
+    <!-- </a> --> 
+    </li>
+    <li class="submenu"> <a href="/AdminUserManage"><i class="icon icon-th-list"></i> <span>用户管理</span>
+      <ul>
+        <li><a href="/AdminUserManage">普通用户管理</a></li>
+        <li><a href="/AdminExpertManage">专家用户管理</a></li>
+        <li><a href="/AdminExpertPush">专家用户导入</a></li>
+      </ul>
+    </li>
+    <li><a href="/AdminInfo"><i class="icon icon-user"></i> <span>个人信息</span></a></li>
+    <li><a href="/AdminContact"><i class="icon icon-phone"></i> <span>联系我们</span></a></li>
+  </ul>
+</div>
+<!--sidebar-menu-->
+
+
+
+
+
+
+<div id="content">
+  <div id="content-header">
+    <div id="breadcrumb"> <a href="/AdminIndex" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> 主页</a></div>
+  </div>
+  
+  <div class="container-fluid">
+    <!--在这里面写主要内容-->
+    
+   <div class="row-fluid">
+    <div class="widget-box">
+      <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+        <h5>专家用户：<span style="color:cadetblue;border-bottom: 1px solid blue;">{{ expertid }}</span>个人履历</h5>
+      </div>
+      <form class="form-horizontal">
+      <div class="widget-content">
+    
+      	 <div class="control-group">
+              <label class="control-label"></label>
+              <div class="controls" style="font-size: 14px; font-family: 'Open Sans', sans-serif;line-height: 50px;" >
+                <!--<input type="text" class="span11" id="ntitle" required="" />-->
+                {% for i in japply %}
+                <div>专家用户ID：{{ i[1] }}</div>
+      					<div>申请时间：{{ i[2] }}</div>
+      					<div>申请身份：{{ i[3] }}</div>
+      					<div>申请年薪：{{ i[4] }}</div>
+      					<div>个人履历：{{ i[5] }}</div>
+      					<div>申请状态：<span style="color: red;">{{ i[6] }}</span></div>
+      					{% endfor %}
+              </div>
+        </div>
+       </form>
+       
+      </div>
+      
+    </div>
+  </div>
+  
+  </div>
+   
+
+
+</div>
+
+
+
+<!--底部说明-->
+		<div class="row-fluid">
+			<div id="footer" class="span12">
+				2019 &copy; HuaCode
+			</div>
+		</div>
+
+
+<script src="../../static/js/jquery.min.js"></script> 
+<script src="../../static/js/jquery.ui.custom.js"></script> 
+<script src="../../static/js/bootstrap.min.js"></script> 
+<script src="../../static/js/bootstrap-colorpicker.js"></script> 
+<script src="../../static/js/bootstrap-datepicker.js"></script> 
+<script src="../../static/js/masked.js"></script> 
+<script src="../../static/js/jquery.uniform.js"></script> 
+<script src="../../static/js/select2.min.js"></script> 
+
+
+</body>
+</html>
